@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="referrer" content="no-referrer">
+<title>Confirmer ton courriel</title>
+<style>
+   :root {
+        --primary: hsl(262, 60%, 20%);
+        --secondary: hsl(248, 40%, 45%);
+        --primaryBlur: hsla(262, 77%, 20%, 0.3);
+        --secondaryBlur: hsla(248, 40%, 45%, 0.3);
+        --background: hsl(0, 0%, 0%);
+        --textPrimary: hsl(0, 0%, 95%);
+        --textSecondary: hsl(0, 0%, 65%);
+        --succes: hsl(138, 20%, 51%);
+        --succesBlur: hsla(138, 30%, 51%, 0.4);
+    }
+  body {
+    background: var(--background);
+    color: hsl(0, 0%, 95%);
+    font-family: sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+  }
+
+  .container {
+    background: var(--background);
+    padding: 32px;
+    border-radius: 16px;
+    width: 90%;
+    max-width: 400px;
+    box-sizing: border-box;
+    text-align: center;
+  }
+
+  h1 {
+    color: var(--textPrimary);
+    margin-bottom: 24px;
+    text-shadow: 0 0 12px var(--textSecondary);
+  }
+
+  .email-display {
+    display: block;
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 24px;
+    border-radius: 12px;
+    border: 1px solid var(--textSecondary);
+    background: hsla(248, 40%, 45%, 0.3);
+    color: hsl(0, 0%, 95%);
+    font-size: 16px;
+    box-sizing: border-box;
+    box-shadow: 0 0 18px var(--secondary);
+  }
+
+  .button {
+    display: inline-block;
+    width: 100%;
+    padding: 14px 0;
+    border-radius: 12px;
+    background: var(--secondary);
+    color: hsl(0, 0%, 95%);
+    text-decoration: none;
+    box-shadow: 0 0 18px var(--secondary);
+    font-size: 16px;
+    font-weight: 500;
+    border: none;
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+
+  .button:hover {
+    background: hsla(248, 40%, 45%, 0.6);
+  }
+
+  .message {
+    margin-top: 16px;
+    font-size: 14px;
+    color: hsl(0, 0%, 65%);
+  }
+
+  .erreur {
+    color: hsl(0, 100%, 40%);
+    background: hsla(0, 100%, 40%, 0.2);
+    padding: 8px;
+    border-radius: 8px;
+    margin-bottom: 16px;
+  }
+
+  .succes {
+    color: hsl(138, 20%, 51%);
+    background: hsla(138, 30%, 51%, 0.2);
+    padding: 8px;
+    border-radius: 8px;
+    margin-bottom: 16px;
+  }
+
+  a{
+    color: hsla(248, 40%, 45%, 0.8);
+    text-decoration:none;
+  }
+</style>
+</head>
+<body>
+  <div class="container">
+    <h1>Confirmer ton courriel</h1>
+
+    <% if (typeof erreur !== 'undefined' && erreur) { %>
+      <div class="erreur"><%= erreur %></div>
+    <% } %>
+
+    <% if (typeof courriel !== 'undefined' && courriel) { %>
+      <p class="message">Tu confirmes l'adresse courriel suivante :</p>
+      <span class="email-display"><%= courriel %></span>
+
+      <form action="<%= action %>" method="POST">
+        <input type="hidden" name="token" value="<%= token %>">
+        <button type="submit" class="button">Confirmer mon compte</button>
+      </form>
+    <% } %>
+
+    <p class="message">Si tu rencontres un problème, contacte <a href="https://instagram.com/sync_dispo_findr" rel="noopener noreferrer" target="_blank">@sync_dispo_findr</a>.</p>
+  </div>
+</body>
+</html>
